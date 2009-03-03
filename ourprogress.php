@@ -117,7 +117,7 @@ function ourprogress_manage_page() {
 			<p>You can display the current value of your fund raising efforts by placing the code <em>&lt;?php echo show_ourprogress();?&gt;</em> anywhere in your theme. You can display a graphic of your fund raising efforts by placing the code <em>&lt;?php echo show_ourprogress_graphic();?&gt;</em> anywhere in your theme.</p>
 	
 			<p><strong>Want to say thank you?</strong></p>
-		  	<p>Using this plug-in is free, but if you'd like to say thanks you can <a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2098421'>send me a small donation</a>.<br/>Even better, a simple link from your web site to mine (<em><a href='http://www.thisismyurl.com'>http://www.thisismyurl.com</a></em>).</p>";
+		  	<p>Using this plug-in is free, but if you'd like to say thanks you can <a href='http://www.thisismyurl.com/donate/'>send me a small donation</a>.<br/>Even better, a simple link from your web site to mine (<em><a href='http://www.thisismyurl.com'>http://www.thisismyurl.com</a></em>).</p>";
 	
 	echo '</small></div>';
 }
