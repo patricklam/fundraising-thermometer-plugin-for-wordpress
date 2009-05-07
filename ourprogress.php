@@ -5,7 +5,7 @@ Plugin URI: http://thisismyurl.com/plugins/ourprogress
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
 Author URI: http://thisismyurl.com
-Version: 0.3.1
+Version: 0.5.0
 */
 
 /*  Copyright 2008  Christopher Ross  (email : info@thisismyurl.com)
@@ -90,7 +90,7 @@ function ourprogress_manage_page() {
 			<th scope="row" valign="top"><label for="slug">Theme</label></th>
 			<td><select name="ourprogresstheme" id="ourprogresstheme">
             	<?php 
-					$path = "../wp-content/plugins/ourprogress/images/";
+					$path = "../wp-content/plugins/fundraising-thermometer-plugin-for-wordpress/images/";
 					$myDirectory = opendir($path);
 
 			// get each entry
@@ -166,7 +166,7 @@ function show_ourprogress_graphic() {
 
 function addHeaderCode() {
 	if(get_option("ourprogresstheme")) 		{$theme = get_option("ourprogresstheme");} else {$theme = "default";}
-	echo '<link type="text/css" rel="stylesheet" href="'. get_bloginfo('wpurl').'/wp-content/plugins/ourprogress/images/'.$theme.'/style.css" />' . "\n";
+	echo '<link type="text/css" rel="stylesheet" href="'. get_bloginfo('wpurl').'/wp-content/plugins/fundraising-thermometer-plugin-for-wordpress/images/'.$theme.'/style.css" />' . "\n";
 }
 
 function roundnum ($num, $nearest)
