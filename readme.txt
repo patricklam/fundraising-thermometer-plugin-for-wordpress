@@ -4,7 +4,7 @@ Plugin URI: http://thisismyurl.com/wordpress/plugins/ourprogress
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
 Tested up to: 2.7.1
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
 
@@ -87,3 +87,6 @@ If you would like to donate to help support future development of this tool, ple
 3.0 (2009-03-16)
 Added the change log
 
+0.5.1 (2009-05-07)
+- Altered the file path
+- documentation modifications

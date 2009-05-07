@@ -5,7 +5,7 @@ Plugin URI: http://thisismyurl.com/plugins/ourprogress
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
 Author URI: http://thisismyurl.com
-Version: 0.5.0
+Version: 0.5.1
 */
 
 /*  Copyright 2008  Christopher Ross  (email : info@thisismyurl.com)
