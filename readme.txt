@@ -5,7 +5,7 @@ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
 Tested up to: 2.9.0
-Stable tag: 0.6/1
+Stable tag: 0.6.2
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
 
