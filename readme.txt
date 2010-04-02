@@ -1,16 +1,21 @@
 === Plugin Name ===
 Contributors: christopherross, tinkerpriest
 Plugin URI: http://thisismyurl.com/wordpress/plugins/ourprogress
+Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7626837
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
-Tested up to: 2.8.0
-Stable tag: 0.5.1
+Tested up to: 2.9.0
+Stable tag: 0.6/1
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
 
 == Description ==
 
 Our Progress is designed to be a simple method for fund raising activities to be tracked and reported on the live website.
+
+FIXES 
+- no longer resets to $0 on install
+- new feature to allow more direct control of padding
 
 
 == Installation ==
@@ -64,7 +69,7 @@ Ensure the plugin folder is named fundraising-thermometer-plugin-for-wordpress, 
 
 = My local currency isn't displaying correctly! =
 
-In some cases, local currency needs to be set in the code by adding the line setlocale(LC_MONETARY, Ôen_USÕ); immediately under the first */ for example:
+In some cases, local currency needs to be set in the code by adding the line setlocale(LC_MONETARY, 'en_US'); immediately under the first */ for example:
 
 Version: 0.2.5
 */
@@ -79,7 +84,7 @@ The plugin uses standard php money_format(); formating.
 Until I upgrade the version number to 1.x, I still consider this plugin to be under development but it has been tested and works well.
 
 == Donations ==
-If you would like to donate to help support future development of this tool, please visit [thisismyurl](http://www.thisismyurl.com/donations)
+If you would like to donate to help support future development of this tool, please visit [thisismyurl](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7626837)
 
 
 == Change Log ==
@@ -90,3 +95,7 @@ Added the change log
 0.5.1 (2009-05-07)
 - Altered the file path
 - documentation modifications
+
+0.6.1 (2010-04-01)
+- fixed method for saving data
+- added padding feature to help make CSS better

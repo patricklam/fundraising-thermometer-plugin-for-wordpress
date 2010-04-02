@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Our Progress
-Plugin URI: http://thisismyurl.com/plugins/ourprogress
+Plugin URI: http://regentware.com/plugins/ourprogress
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
-Author URI: http://thisismyurl.com
-Version: 0.5.1
+Author URI: http://christopherross.ca
+Version: 0.6.1
 */
 
 /*  Copyright 2008  Christopher Ross  (email : info@thisismyurl.com)
@@ -30,13 +30,33 @@ add_action('wp_head','addHeaderCode');
 add_filter('plugin_action_links', 'ourprogress_action', -10, 2);
 
 
-if ($_REQUEST['submit']) {
+if ($_REQUEST['submit'] && isset($_REQUEST['ourprogressmax'])) {
+    $myFile = "ourprogresssettings.txt";
+    $fh = fopen($myFile, 'w') or die("can't open file");
+
 	$ourprogressprogress = ereg_replace("[^0-9]", "", floor($_REQUEST['ourprogressprogress']));
 	$ourprogressmax = ereg_replace("[^0-9]", "", floor($_REQUEST['ourprogressmax']));
+
+
+    $stringData = $ourprogressprogress."\n";
+    fwrite($fh, $stringData);
+    $stringData = $ourprogressmax."\n";
+    fwrite($fh, $stringData);
+    $stringData = $_REQUEST['ourprogressformat']."\n";
+    fwrite($fh, $stringData);
+    $stringData = $_REQUEST['ourprogresstheme']."\n";
+    fwrite($fh, $stringData);
+    $stringData = $_REQUEST['ourprogresspadding']."\n";
+    fwrite($fh, $stringData);
+
+    fclose($fh);
+
+
 	update_option("ourprogressprogress", $ourprogressprogress);
 	update_option("ourprogressmax", $ourprogressmax);
 	update_option("ourprogressformat", $_REQUEST['ourprogressformat']);
 	update_option("ourprogresstheme", $_REQUEST['ourprogresstheme']);
+	update_option("ourprogresspadding", $_REQUEST['ourprogresspadding']);
 
 }
 
@@ -107,6 +127,16 @@ function ourprogress_manage_page() {
                 </select>
             <p>Which theme would you like to use?</p></td>
 		</tr>
+        
+        <tr class="form-field form-required">
+			<th scope="row" valign="top"><label for="name">Padding Amount</label></th>
+			<td><input name="ourprogresspadding" id="ourprogresspadding" type="text" value="<?php 
+				if(get_option("ourprogresspadding")) {echo get_option("ourprogresspadding");} else {echo "20";}
+			?>" size="40" aria-required="true" />
+            <p>How many pixels would you like Our Progress to place between values on the bar?</p></td>
+		</tr>
+        
+        
 	</table>	
 	<p class="submit"><input type="submit" class="button" name="submit" value="Update" /></p>
 	<?php
@@ -132,10 +162,11 @@ function show_ourprogress() {
 
 function show_ourprogress_graphic() {
 
-	if(get_option("ourprogressmax")) 		{$max = get_option("ourprogressmax");} else {$max = "100";}
-	if(get_option("ourprogressprogress")) 	{$current = get_option("ourprogressprogress");} else {$current = 0;}
-	if(get_option("ourprogressformat")) 	{$format = get_option("ourprogressformat");} else {$format = "$%(#10n";}
-	if(get_option("ourprogresstheme")) 		{$theme = get_option("ourprogresstheme");} else {$theme = "default";}
+	if(strlen(get_option("ourprogressmax"))>1) {$max = get_option("ourprogressmax");} else {$max = "100";}
+	if(strlen(get_option("ourprogressprogress"))>1) {$current = get_option("ourprogressprogress");} else {$current = 0;}
+	if(strlen(get_option("ourprogressformat"))>1) {$format = get_option("ourprogressformat");} else {$format = "$%(#10n";}
+	if(strlen(get_option("ourprogresstheme"))>1) {$theme = get_option("ourprogresstheme");} else {$theme = "default";}
+	if(strlen(get_option("ourprogresspadding"))>1) {$theme = get_option("ourprogresspadding");} else {$padding = "20";}
 
 	if ($current >= $max) {
         echo "<div class='ourprogress-burst'>\n";
@@ -157,9 +188,12 @@ function show_ourprogress_graphic() {
 	echo "</div>\n";
 	echo "<div class='ourprogressnumbers'>\n";
 	for ( $counter = $max; $counter >= 0;$counter=$counter-($max/10)	) {
-		echo "<div class='progressvalue'>".my_money_format($format,$counter)."</div>\n";
+		echo "<div class='progressvalue' style='margin-top:";
+        if(get_option("ourprogresspadding")) {echo get_option("ourprogresspadding");} else {echo "20";}
+        echo "px;'>".my_money_format($format,$counter)."</div>\n";
 	}
 	echo "</div>\n";
+	echo "<p style='display:none;'><a style='display:none;' href='http://christopherross.ca' title='WordPress Plugin by Christopher Ross'>WordPress Plugin by Christopher Ross</a></p>";
 	echo "<!-- Our Progress plug-in by Christopher Ross, http://www.thisismyurl.com -->\n";
 	echo "</div>\n";
 }
