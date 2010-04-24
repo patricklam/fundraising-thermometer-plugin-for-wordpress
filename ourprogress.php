@@ -5,7 +5,7 @@ Plugin URI: http://regentware.com/plugins/ourprogress
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
 Author URI: http://christopherross.ca
-Version: 0.6.3
+Version: 0.6.4
 */
 
 /*  Copyright 2008  Christopher Ross  (email : info@thisismyurl.com)
@@ -196,7 +196,7 @@ function show_ourprogress_graphic() {
 	if(strlen(get_option("ourprogressprogress"))>1) {$current = get_option("ourprogressprogress");} else {$current = 0;}
 	if(strlen(get_option("ourprogressformat"))>1) {$format = get_option("ourprogressformat");} else {$format = "$%(#10n";}
 	if(strlen(get_option("ourprogresstheme"))>1) {$theme = get_option("ourprogresstheme");} else {$theme = "default";}
-	if(strlen(get_option("ourprogresspadding"))>1) {$theme = get_option("ourprogresspadding");} else {$padding = "20";}
+	if(strlen(get_option("ourprogresspadding"))>1) {$padding = get_option("ourprogresspadding");} else {$padding = "20";}
 
 	if ($current >= $max) {
         echo "<div class='ourprogress-burst'>\n";
