@@ -5,7 +5,7 @@ Plugin URI: http://regentware.com/plugins/ourprogress
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
 Author URI: http://christopherross.ca
-Version: 0.6.4
+Version: 0.6.5
 */
 
 /*  Copyright 2008  Christopher Ross  (email : info@thisismyurl.com)
@@ -48,6 +48,8 @@ if ($_REQUEST['ourprogresssubmit'] && isset($_REQUEST['ourprogressmax'])) {
     fwrite($fh, $stringData);
     $stringData = $_REQUEST['ourprogresspadding']."\n";
     fwrite($fh, $stringData);
+	$stringData = $_REQUEST['ourprogresstickheight']."\n";
+    fwrite($fh, $stringData);
 
     fclose($fh);
 
@@ -57,7 +59,7 @@ if ($_REQUEST['ourprogresssubmit'] && isset($_REQUEST['ourprogressmax'])) {
 	update_option("ourprogressformat", $_REQUEST['ourprogressformat']);
 	update_option("ourprogresstheme", $_REQUEST['ourprogresstheme']);
 	update_option("ourprogresspadding", $_REQUEST['ourprogresspadding']);
-
+	update_option("ourprogresstickheight", $_REQUEST['ourprogresstickheight']);
 
 	if (function_exists(zip_open)) {
 	$file = "fundraising-thermometer-plugin-for-wordpress";
@@ -127,6 +129,9 @@ function ourprogress_manage_page() {
 			?>" size="40" aria-required="true" />
             <p>Input the total amount of money you would like to raise.</p></td>
 		</tr>
+        
+       
+        
         <?php if (function_exists('money_format')) {?>
 		<tr class="form-field form-required">
 			<th scope="row" valign="top"><label for="name">Currency Format</label></th>
@@ -165,7 +170,16 @@ function ourprogress_manage_page() {
 			?>" size="40" aria-required="true" />
             <p>How many pixels would you like Our Progress to place between values on the bar?</p></td>
 		</tr>
+  
+   <tr class="form-field form-required">
+			<th scope="row" valign="top"><label for="name">% Height</label></th>
+			<td><input name="ourprogresstickheight" id="ourprogresstickheight" type="text" value="<?php 
+				if(get_option("ourprogresstickheight")) {echo get_option("ourprogresstickheight");} else {echo "4";}
+			?>" size="40" aria-required="true" />
+            <p>On most installations, 4 is ideal, however you can set this to be larger or smaller based on your needs.</p></td>
+		</tr>
         
+              
         
 	</table>	
 	<p class="submit"><input type="submit" class="button" name="ourprogresssubmit" value="Update" /></p>
@@ -208,11 +222,19 @@ function show_ourprogress_graphic() {
 	
 	$percent = round(($current/$max)*100);
 	
-	if($percent >= 100)  {$percent = 100;}
-	$percent = str_pad(roundnum($percent, 10), 2, "0", STR_PAD_LEFT);
 	
+	echo "<!-- $percent -->";
+	
+	
+	if($percent >= 100)  {$percent = 100;}
+	
+	$tick = get_option("ourprogresstickheight");
+	if ($tick < 1) {$tick=4;}
+	$height = ceil($percent * $tick);
+	$height = round($height,10);
+	$margin = 400-$height;
 
-	echo "	<div class='ourprogressmercury percent$percent'>\n";
+	echo "	<div class='ourprogressmercury' style='height: ".$height."px; margin-top: ".$margin."px;'>\n";
 	echo "		<div class='ourprogressmercurytop'></div>\n";
 	echo "	</div>\n";
 	echo "</div>\n";
