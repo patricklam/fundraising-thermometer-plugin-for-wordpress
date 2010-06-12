@@ -1,3 +1,4 @@
+
 === Plugin Name ===
 Contributors: christopherross, tinkerpriest
 Plugin URI: http://regentware.com/software/web-based/wordpress-plugins/thermometer-plugin-for-wordpress/
@@ -103,6 +104,13 @@ Added the change log
 
 0.6.4 (2010-04-24)
 - fixed padding error
+
+
+0.6.5 (2010-06-01)
+- made the counter more sensitive and added control to allow users to set how large or small each increment appears as.
+
+
+== Upgrade Notice ==
 
 
 0.6.5 (2010-06-01)
