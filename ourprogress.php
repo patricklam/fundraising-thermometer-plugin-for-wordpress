@@ -30,6 +30,9 @@ add_action('wp_head','addHeaderCode');
 add_filter('plugin_action_links', 'ourprogress_action', -10, 2);
 
 
+
+
+
 if ($_REQUEST['ourprogresssubmit'] && isset($_REQUEST['ourprogressmax'])) {
     $myFile = "ourprogresssettings.txt";
     $fh = fopen($myFile, 'w') or die("can't open file");
@@ -98,6 +101,7 @@ function ourprogress_action($links, $file) {
 	// adds the link to the settings page in the plugin list page
 	if ($file == plugin_basename(dirname(__FILE__).'/ourprogress.php'))
 	$links[] = "<a href='edit.php?page=ourprogressmanage'>" . __('Settings', 'Our Progress') . "</a>";
+	$links [] = "<a href='http://regentware.com/software/web-based/wordpress-plugins/thermometer-plugin-for-wordpress/'>Instructions</a>";
 	return $links;
 }
 
