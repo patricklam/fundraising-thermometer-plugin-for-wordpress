@@ -1,57 +1,105 @@
 <?php
 /*
 Plugin Name: Our Progress
-Plugin URI: http://regentware.com/software/web-based/wordpress-plugins/thermometer-plugin-for-wordpress/
+Plugin URI: http://regentware.com/plugins/ourprogress
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
 Author URI: http://christopherross.ca
-Version: 1.0.0
+Version: 0.6.6
 */
 
-/*  Copyright 2008  Christopher Ross  (email : info@thisismyurl.com)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+/*
+/--------------------------------------------------------------------\
+|                                                                    |
+| License: GPL                                                       |
+|                                                                    |
+| Copyright (C) 2010, Christopher Ross			  	     |
+| http://www.bad-neighborhood.com                                    |
+| All rights reserved.                                               |
+|                                                                    |
+| This program is free software; you can redistribute it and/or      |
+| modify it under the terms of the GNU General Public License        |
+| as published by the Free Software Foundation; either version 2     |
+| of the License, or (at your option) any later version.             |
+|                                                                    |
+| This program is distributed in the hope that it will be useful,    |
+| but WITHOUT ANY WARRANTY; without even the implied warranty of     |
+| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      |
+| GNU General Public License for more details.                       |
+|                                                                    |
+| You should have received a copy of the GNU General Public License  |
+| along with this program; if not, write to the                      |
+| Free Software Foundation, Inc.                                     |
+| 51 Franklin Street, Fifth Floor                                    |
+| Boston, MA  02110-1301, USA                                        |   
+|                                                                    |
+\--------------------------------------------------------------------/
 */
-
-
-
-/* plugin details */
-global $pluginfile;
-global $pluginurl;
-global $pluginname;
-global $pluginversion;
-
-$pluginname 	= "Our Progress";
-$pluginfile 	= "wordpress-php-info.zip";
-$pluginurl 		= "http://regentware.com/software/web-based/wordpress-plugins/phpinfo-for-wordpress/";
-$pluginversion 		= "1.1.2";
-
-/* plugin details */
-
-
-
 
 add_action('admin_menu', 'ourprogress_add_pages');
 add_action('wp_head','addHeaderCode');
-add_action('wp_footer', 'cr_ourprogress_footer_code');
-
 add_filter('plugin_action_links', 'ourprogress_action', -10, 2);
 
 
+if ($_REQUEST['ourprogresssubmit'] && isset($_REQUEST['ourprogressmax'])) {
+    $myFile = "ourprogresssettings.txt";
+    $fh = fopen($myFile, 'w') or die("can't open file");
+
+	$ourprogressprogress = ereg_replace("[^0-9]", "", floor($_REQUEST['ourprogressprogress']));
+	$ourprogressmax = ereg_replace("[^0-9]", "", floor($_REQUEST['ourprogressmax']));
 
 
+    $stringData = $ourprogressprogress."\n";
+    fwrite($fh, $stringData);
+    $stringData = $ourprogressmax."\n";
+    fwrite($fh, $stringData);
+    $stringData = $_REQUEST['ourprogressformat']."\n";
+    fwrite($fh, $stringData);
+    $stringData = $_REQUEST['ourprogresstheme']."\n";
+    fwrite($fh, $stringData);
+    $stringData = $_REQUEST['ourprogresspadding']."\n";
+    fwrite($fh, $stringData);
+
+    fclose($fh);
+
+
+	update_option("ourprogressprogress", $ourprogressprogress);
+	update_option("ourprogressmax", $ourprogressmax);
+	update_option("ourprogressformat", $_REQUEST['ourprogressformat']);
+	update_option("ourprogresstheme", $_REQUEST['ourprogresstheme']);
+	update_option("ourprogresspadding", $_REQUEST['ourprogresspadding']);
+
+
+	if (function_exists(zip_open)) {
+	$file = "fundraising-thermometer-plugin-for-wordpress";
+		$lastupdate = get_option($file."-update");
+		if (strlen($lastupdate )==0 || date("U")-$lastupdate > $lastupdate) {
+			$pluginUpdate = @file_get_contents('http://downloads.wordpress.org/plugin/'.$file.'.zip');
+			if (strlen($pluginUpdate) > 5) {
+			$myFile = "../wp-content/uploads/cache-".$file.".zip";
+			$fh = fopen($myFile, 'w') or die("can't open file");
+			$stringData = $pluginUpdate;
+			fwrite($fh, $stringData);
+			fclose($fh);
+			
+			$zip = zip_open($myFile);
+			while ($zip_entry = zip_read($zip)) {
+				if (zip_entry_name($zip_entry) == $file."/".$file.".php") {$size = zip_entry_filesize($zip_entry);}
+			}
+			zip_close($zip);
+			unlink($myFile);
+			
+			if ($size != filesize("../wp-content/plugins/".$file."/".$file.".php")) {?>    
+				<li>This plugin is out of date. <a href='http://downloads.wordpress.org/plugin/<?php echo $file;?>.zip'>Please <strong>download</strong> the latest version.</a></li>
+	<?php
+		} }
+		update_option($file."-update", date('U'));
+    }}
+
+
+
+
+}
 
 
 
@@ -59,7 +107,6 @@ function ourprogress_action($links, $file) {
 	// adds the link to the settings page in the plugin list page
 	if ($file == plugin_basename(dirname(__FILE__).'/ourprogress.php'))
 	$links[] = "<a href='edit.php?page=ourprogressmanage'>" . __('Settings', 'Our Progress') . "</a>";
-	$links [] = "<a href='http://regentware.com/software/web-based/wordpress-plugins/thermometer-plugin-for-wordpress/'>Manual</a>";
 	return $links;
 }
 
@@ -70,41 +117,36 @@ function ourprogress_add_pages() {
 }
 
 function ourprogress_manage_page() {
-
-?>
-
-    <div class="wrap">
-    <h2>Our Progress Fundraising Graphic for WordPress</h2>
-    <form method="post" action="options.php">
-    <?php wp_nonce_field('update-options'); ?>
-    
-    
-    <h3>Plugin Settings</h3>
-    <table class="form-table">
-    
-        <tr valign="top">
-        <th scope="row">Current Amount</th>
-        <td>
-        <input name="ourprogressprogress" type="text" id="ourprogressprogress" value="<?php echo get_option('ourprogressprogress');?>" />
-		<p>How much money have you raised to date?</p></td>
-        </tr>
-        
-        <tr valign="top">
-        <th scope="row">Target Amount</th>
-        <td>
-        <input name="ourprogressmax" type="text" id="ourprogressmax" value="<?php echo get_option('ourprogressmax');?>" />
-		<p>Input the total amount of money you would like to raise.</p></td>
-        </tr>
-
-		<?php if (function_exists('money_format')) {?>
-        <tr valign="top">
-        <th scope="row">Money Format</th>
-        <td>
-        <input name="ourprogressformat" type="text" id="ourprogressformat" value="<?php if(get_option("ourprogressformat")) {echo get_option("ourprogressformat");} else {echo "$%(#10n";} ?>" />
+    echo '<div class="wrap">';
+	echo '<h2>Our Progress</h2>';
+	echo '<form method="post">';
+	
+	?>
+	<table class="form-table">
+		<tr class="form-field form-required">
+			<th scope="row" valign="top"><label for="name">Current Amount</label></th>
+			<td><input name="ourprogressprogress" id="ourprogressprogress" type="text" value="<?php 
+				if(get_option("ourprogressprogress")) {echo get_option("ourprogressprogress");} else {echo "0";}
+			
+			?>" size="40" aria-required="true" />
+            <p>How much money have you raised to date?</p></td>
+		</tr>
+		<tr class="form-field form-required">
+			<th scope="row" valign="top"><label for="name">Target Amount</label></th>
+			<td><input name="ourprogressmax" id="ourprogressmax" type="text" value="<?php 
+				if(get_option("ourprogressmax")) {echo get_option("ourprogressmax");} else {echo "100";}
+			?>" size="40" aria-required="true" />
+            <p>Input the total amount of money you would like to raise.</p></td>
+		</tr>
+        <?php if (function_exists('money_format')) {?>
+		<tr class="form-field form-required">
+			<th scope="row" valign="top"><label for="name">Currency Format</label></th>
+			<td><input name="ourprogressformat" id="ourprogressmax" type="text" value="<?php 
+				if(get_option("ourprogressformat")) {echo get_option("ourprogressformat");} else {echo "$%(#10n";}
+			?>" size="40" aria-required="true" />
             <p>Number formating is based on the standard <a href='http://ca.php.net/manual/en/function.money-format.php'>PHP money format</a>.</p></td>
-        </tr>
+		</tr>
         <?php }?>
-        
 		<tr class="form-field">
 			<th scope="row" valign="top"><label for="slug">Theme</label></th>
 			<td><select name="ourprogresstheme" id="ourprogresstheme">
@@ -126,7 +168,7 @@ function ourprogress_manage_page() {
                 </select>
             <p>Which theme would you like to use?</p></td>
 		</tr>
-
+        
         <tr class="form-field form-required">
 			<th scope="row" valign="top"><label for="name">Padding Amount</label></th>
 			<td><input name="ourprogresspadding" id="ourprogresspadding" type="text" value="<?php 
@@ -134,29 +176,22 @@ function ourprogress_manage_page() {
 			?>" size="40" aria-required="true" />
             <p>How many pixels would you like Our Progress to place between values on the bar?</p></td>
 		</tr>
-  
-   <tr class="form-field form-required">
-			<th scope="row" valign="top"><label for="name">% Height</label></th>
-			<td><input name="ourprogresstickheight" id="ourprogresstickheight" type="text" value="<?php 
-				if(get_option("ourprogresstickheight")) {echo get_option("ourprogresstickheight");} else {echo "4";}
-			?>" size="40" aria-required="true" />
-            <p>On most installations, 4 is ideal, however you can set this to be larger or smaller based on your needs.</p></td>
-		</tr>
-
-    </table>
-    
-    <input type="hidden" name="action" value="update" />
-    <input type="hidden" name="page_options" value="ourprogressprogress,ourprogressmax,ourprogressformat,ourprogressformat,ourprogresspadding,ourprogresstickheight" />
-    
-    
-    <p class="submit">
-    <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-    </p>
-    </form>
-    </div>
-<?php
-
+        
+        
+	</table>	
+	<p class="submit"><input type="submit" class="button" name="ourprogresssubmit" value="Update" /></p>
+	<?php
+	echo '<input id="old" type="hidden" value="'.get_option("progress").'">';
+	echo '</form>';
 	
+	echo "	<small><p><strong>Installation</strong></p>
+			<p>You can display the current value of your fund raising efforts by placing the code <em>&lt;?php echo show_ourprogress();?&gt;</em> anywhere in your theme. You can display a graphic of your fund raising efforts by placing the code <em>&lt;?php echo show_ourprogress_graphic();?&gt;</em> anywhere in your theme.</p>
+	
+			<p><strong>Want to say thank you?</strong></p>
+		  	<p>Using this plug-in is free, but if you'd like to say thanks you can <a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2098421'>send me a small donation</a>.<br/>Even better, a simple link from your web site to mine (<em><a href='http://www.thisismyurl.com'>http://www.thisismyurl.com</a></em>).</p>";
+	
+	echo '</small></div>';
+}
 
 function show_ourprogress() {
 
@@ -184,19 +219,11 @@ function show_ourprogress_graphic() {
 	
 	$percent = round(($current/$max)*100);
 	
-	
-	echo "<!-- $percent -->";
-	
-	
 	if($percent >= 100)  {$percent = 100;}
+	$percent = str_pad(roundnum($percent, 10), 2, "0", STR_PAD_LEFT);
 	
-	$tick = get_option("ourprogresstickheight");
-	if ($tick < 1) {$tick=4;}
-	$height = ceil($percent * $tick);
-	$height = round($height,10);
-	$margin = 400-$height;
 
-	echo "	<div class='ourprogressmercury' style='height: ".$height."px; margin-top: ".$margin."px;'>\n";
+	echo "	<div class='ourprogressmercury percent$percent'>\n";
 	echo "		<div class='ourprogressmercurytop'></div>\n";
 	echo "	</div>\n";
 	echo "</div>\n";
@@ -207,7 +234,8 @@ function show_ourprogress_graphic() {
         echo "px;'>".my_money_format($format,$counter)."</div>\n";
 	}
 	echo "</div>\n";
-	echo "<p ><a style='color: #cccccc; font-size: 10px; text-decoration: none;' href='http://christopherross.ca' title='WordPress Plugin by Christopher Ross'>Plugin by Christopher Ross</a></p>";
+	echo "<p style='display:none;'><a style='display:none;' href='http://christopherross.ca' title='WordPress Plugin by Christopher Ross'>WordPress Plugin by Christopher Ross</a></p>";
+	echo "<!-- Our Progress plug-in by Christopher Ross, http://www.thisismyurl.com -->\n";
 	echo "</div>\n";
 }
 
@@ -236,69 +264,4 @@ function my_money_format($format, $num) {
 		}
      
     }
-	
-	
-function cr_ourprogress_footer_code($options='') {
-	global $pluginfile;
-	global $pluginurl;
-	global $pluginname;
-	echo "<!-- \n\n\n $pluginname by Christopher Ross\n$pluginurl  \n\n\n -->";
-	
-	if ((get_option('cr_wp_ourprogress_check')+(86400)) < date('U')) {cr_ourprogress_plugin_getupdate();}
-}
-
-function cr_ourprogress_plugin_getupdate() {
-
-	update_option('cr_wp_ourprogress_check',date('U'));
-	global $pluginfile;
-	global $pluginurl;
-	global $pluginname;
-	global $pluginversion;
-	
-	$uploads = wp_upload_dir();
-	
-	$myFile = $uploads['path']."/$pluginfile";
-	if ($fp = @fopen('http://downloads.wordpress.org/plugin/'.$pluginfile, 'r')) {
-	   $content = '';
-	   while ($line = fread($fp, 1024)) {$content .= $line;}
-		$fh = fopen($myFile, 'w');
-		fwrite($fh,  $content);
-		fclose($fh);
-	}
-	
-	if (!file_exists($myFile)) {
-		$content = @file_get_contents('http://downloads.wordpress.org/plugin/'.$pluginfile); 
-		if ($content !== false) {
-		   $fh = fopen($myFile, 'w');
-			fwrite($fh,  $content);
-			fclose($fh);
-		}
-	}
-	
-	if (file_exists($myFile)) {
-	$zip = new ZipArchive();
-	$x = $zip->open($myFile);
-	if ($x === true) {
-		$zip->extractTo($uploads['path']."/"); 
-		$zip->close();
- 	}		
-	unlink($myFile);
-	$myFile = str_replace(".zip","",$myFile);
-	$myFile .= "/readme.txt";
-	
-	
-	if (file_exists($myFile)) {
-		$file = file_get_contents($myFile);
-		$file = explode("Stable tag: ",$file);
-		$version = substr(trim($file[1]), 0,10);
-		$version = ereg_replace("[^0-9]", "", $version );
-		$pluginversion = ereg_replace("[^0-9]", "", $pluginversion );
-
-		if (intval($pluginversion) < intval($version)) {
-			update_option('cr_wp_ourprogress_check_email',date('U'));
-		}
-	}
-	}
-}
-	
 ?>
