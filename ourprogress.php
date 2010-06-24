@@ -13,7 +13,7 @@ Version: 0.6.6
 |                                                                    |
 | License: GPL                                                       |
 |                                                                    |
-| Copyright (C) 2010, Christopher Ross			  	     |
+| Copyright (C) 2010, Christopher Ross			  	     			 |
 | http://www.bad-neighborhood.com                                    |
 | All rights reserved.                                               |
 |                                                                    |
@@ -39,6 +39,9 @@ Version: 0.6.6
 add_action('admin_menu', 'ourprogress_add_pages');
 add_action('wp_head','addHeaderCode');
 add_filter('plugin_action_links', 'ourprogress_action', -10, 2);
+
+add_shortcode('show_ourprogress','show_ourprogress');
+add_shortcode('show_ourprogress_graphic','show_ourprogress_graphic');
 
 
 if ($_REQUEST['ourprogresssubmit'] && isset($_REQUEST['ourprogressmax'])) {

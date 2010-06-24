@@ -6,7 +6,7 @@ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
 Tested up to: 3.0.0
-Stable tag: 0.6.6
+Stable tag: 0.6.7
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
 
@@ -66,7 +66,9 @@ Check that your wp-content/plugins/fundraising-thermometer-plugin-for-wordpress/
 
 Ensure the plugin folder is named fundraising-thermometer-plugin-for-wordpress, not ourprogress as in earlier versions.
 
+= Short Codes =
 
+In a post, you can add [show_ourprogress_graphic] or [show_ourprogress] to return the graphic file or amount donated.
 
 = My local currency isn't displaying correctly! =
 
@@ -117,3 +119,8 @@ Added the change log
 
 0.6.5 (2010-06-01)
 - made the counter more sensitive and added control to allow users to set how large or small each increment appears as.
+
+
+0.6.7
+
+- added short codes [show_ourprogress_graphic] and [show_ourprogress]
