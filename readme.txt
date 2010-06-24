@@ -68,7 +68,7 @@ Ensure the plugin folder is named fundraising-thermometer-plugin-for-wordpress, 
 
 = Short Codes =
 
-In a post, you can add [show_ourprogress_graphic] or [show_ourprogress] to return the graphic file or amount donated.
+In a post, you can add [show_ourprogress_graphic] or [show_ourprogress] to return the graphic file or amount donated. If you want to show the target amount in a post, use [show_ourprogress_target]
 
 = My local currency isn't displaying correctly! =
 
@@ -123,4 +123,4 @@ Added the change log
 
 0.6.7
 
-- added short codes [show_ourprogress_graphic] and [show_ourprogress]
+- added short codes [show_ourprogress_graphic], [show_ourprogress] and [show_ourprogress_target]
