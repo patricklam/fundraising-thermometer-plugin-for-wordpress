@@ -5,7 +5,7 @@ Plugin URI: http://regentware.com/plugins/ourprogress
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
 Author URI: http://christopherross.ca
-Version: 0.6.7
+Version: 0.6.8
 */
 
 /*
@@ -217,7 +217,7 @@ function show_ourprogress_target() {
 }
 
 function show_ourprogress_graphic() {
-
+	echo "<div class='ourprogresswrapper'>\n";
 	if(strlen(get_option("ourprogressmax"))>1) {$max = get_option("ourprogressmax");} else {$max = "100";}
 	if(strlen(get_option("ourprogressprogress"))>1) {$current = get_option("ourprogressprogress");} else {$current = 0;}
 	if(strlen(get_option("ourprogressformat"))>1) {$format = get_option("ourprogressformat");} else {$format = "$%(#10n";}
@@ -231,7 +231,6 @@ function show_ourprogress_graphic() {
     }
 	
 	echo "<div class='ourprogressgraphics'>\n";
-	
 	$percent = round(($current/$max)*100);
 	
 	if($percent >= 100)  {$percent = 100;}
@@ -249,10 +248,12 @@ function show_ourprogress_graphic() {
         echo "px;'>".my_money_format($format,$counter)."</div>\n";
 	}
 	echo "</div>\n";
-	echo "<p style='display:none;'><a style='display:none;' href='http://christopherross.ca' title='WordPress Plugin by Christopher Ross'>WordPress Plugin by Christopher Ross</a></p>";
 	echo "<!-- Our Progress plug-in by Christopher Ross, http://www.thisismyurl.com -->\n";
 	echo "</div>\n";
+	echo "<p><a style='font-size: 5px;' href='http://christopherross.ca' title='WordPress Plugin by Christopher Ross'>Our Progress by Christopher Ross</a></p>";
+	echo "</div>\n";
 }
+
 
 function addHeaderCode() {
 	if(get_option("ourprogresstheme")) 		{$theme = get_option("ourprogresstheme");} else {$theme = "default";}
@@ -279,4 +280,18 @@ function my_money_format($format, $num) {
 		}
      
     }
+
+function widget_cr_our_progress() {
+?>
+  <h2 class="widgettitle">Our Progress</h2>
+  <?php show_ourprogress_graphic(); ?>
+<?php
+}
+function cr_our_progress_init()
+{
+  register_sidebar_widget(__('Our Progress'), 'widget_cr_our_progress');
+}
+add_action("plugins_loaded", "cr_our_progress_init");
+
+
 ?>

@@ -6,7 +6,7 @@ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
 Tested up to: 3.0.0
-Stable tag: 0.6.7
+Stable tag: 0.6.8
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
 
@@ -56,7 +56,7 @@ To display the graphic results, include the following code in your theme:
 
 = Can I include it in a Widget? =
 
-Yes! If you add a text widget to your sidebar, simply paste the above code into the text area and the plugin will work as a widget.
+As of 0.6.8, you will see a new widget (Appearance > Widgets) for the Our Progress graphic.
 
 = Why can't I see any graphics? =
 
@@ -124,3 +124,7 @@ Added the change log
 0.6.7
 
 - added short codes [show_ourprogress_graphic], [show_ourprogress] and [show_ourprogress_target]
+
+0.6.8
+
+- added Our Progress Widget
