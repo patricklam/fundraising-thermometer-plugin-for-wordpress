@@ -1,11 +1,11 @@
 
 === Plugin Name ===
-Contributors: christopherross, tinkerpriest
-Plugin URI: http://regentware.com/software/web-based/wordpress-plugins/thermometer-plugin-for-wordpress/
-Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7626837
+Contributors: christopherross
+Plugin URI: http://regentware.com/26/our-progress-for-wordpress/
+Donate link:  http://regentware.com/donate/
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
-Tested up to: 3.0.0
+Tested up to: 3.0.1
 Stable tag: 0.6.9
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
@@ -21,7 +21,7 @@ FIXES
 
 == Installation ==
 
-To install Our Progress, please upload the ourprogess folder to your plugins folder and active the plugin.
+To install Our Progress, please upload the ourprogress folder to your plugins folder and active the plugin.
 
 == Displaying the results ==
 
@@ -40,7 +40,7 @@ To display the graphic results, include the following code in your theme:
 2. screenshot-2.jpg
 
 == Updates ==
-Updates to the plugin will be posted here, to [thisismyurl](http://www.thisismyurl.com/plugins/ourprogress)
+Updates to the plugin will be posted here, to [Regent Software](http://christopherross.ca)
 
 == Frequently Asked Questions ==
 
@@ -87,7 +87,7 @@ The plugin uses standard php money_format(); formating.
 Until I upgrade the version number to 1.x, I still consider this plugin to be under development but it has been tested and works well.
 
 == Donations ==
-If you would like to donate to help support future development of this tool, please visit [thisismyurl](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7626837)
+If you would like to donate to help support future development of this tool, please visit [Regent Software](http://regentware.com/donate/?7626837)
 
 
 == Change Log ==
