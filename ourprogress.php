@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Our Progress
-Plugin URI: http://regentware.com/plugins/ourprogress
+Plugin URI: http://thisismyurl.com/downloads/wordpress/plugins/fundraising-thermometer-for-wp/
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
-Author URI: http://christopherross.ca
-Version: 0.6.9
+Author URI: http://thisismyurl.com
+Version: 0.7.0
 */
 
 /*
@@ -13,8 +13,8 @@ Version: 0.6.9
 |                                                                    |
 | License: GPL                                                       |
 |                                                                    |
-| Copyright (C) 2010, Christopher Ross			  	     			 |
-| http://www.bad-neighborhood.com                                    |
+| Copyright (C) 2011, Christopher Ross			  	     			 |
+| http://thisismyurl.com                                   			 |
 | All rights reserved.                                               |
 |                                                                    |
 | This program is free software; you can redistribute it and/or      |
@@ -49,26 +49,6 @@ add_shortcode('show_ourprogress_target','show_ourprogress_target');
 
 
 if ($_REQUEST['ourprogresssubmit'] && isset($_REQUEST['ourprogressmax'])) {
-    $myFile = "ourprogresssettings.txt";
-    $fh = fopen($myFile, 'w') or die("can't open file");
-
-	$ourprogressprogress = ereg_replace("[^0-9]", "", floor($_REQUEST['ourprogressprogress']));
-	$ourprogressmax = ereg_replace("[^0-9]", "", floor($_REQUEST['ourprogressmax']));
-
-
-    $stringData = $ourprogressprogress."\n";
-    fwrite($fh, $stringData);
-    $stringData = $ourprogressmax."\n";
-    fwrite($fh, $stringData);
-    $stringData = $_REQUEST['ourprogressformat']."\n";
-    fwrite($fh, $stringData);
-    $stringData = $_REQUEST['ourprogresstheme']."\n";
-    fwrite($fh, $stringData);
-    $stringData = $_REQUEST['ourprogresspadding']."\n";
-    fwrite($fh, $stringData);
-
-    fclose($fh);
-
 
 	update_option("ourprogressprogress", $ourprogressprogress);
 	update_option("ourprogressmax", $ourprogressmax);
@@ -170,7 +150,7 @@ function ourprogress_manage_page() {
 			<p>You can display the current value of your fund raising efforts by placing the code <em>&lt;?php echo show_ourprogress();?&gt;</em> anywhere in your theme. You can display a graphic of your fund raising efforts by placing the code <em>&lt;?php echo show_ourprogress_graphic();?&gt;</em> anywhere in your theme.</p>
 	
 			<p><strong>Want to say thank you?</strong></p>
-		  	<p>Using this plug-in is free, but if you'd like to say thanks you can <a href='http://regentware.com/donate/?2098421'>send me a small donation</a>.<br/>Even better, a simple link from your web site to mine (<em><a href='http://christopherross.ca'>http://christopherross.ca</a></em>).</p>";
+		  	<p>Using this plug-in is free, but if you'd like to say thanks you can <a href='http://thisismyurl.com/?2098421'>send me a small donation</a>.<br/>Even better, a simple link from your web site to mine (<em><a href='http://thisismyurl.com'>http://thisismyurl.com</a></em>).</p>";
 	
 	echo '</small></div>';
 }
@@ -223,9 +203,9 @@ function show_ourprogress_graphic() {
         echo "px;'>".my_money_format($format,$counter)."</div>\n";
 	}
 	echo "</div>\n";
-	echo "<!-- Our Progress plug-in by Christopher Ross, http://christopherross.ca -->\n";
+	echo "<!-- Our Progress plug-in by Christopher Ross, http://thisismyurl.com -->\n";
 	echo "</div>\n";
-	echo "<p><a style='font-size: 5px;' href='http://christopherross.ca' title='WordPress Plugin by Christopher Ross'>Our Progress by Christopher Ross</a></p>";
+	echo "<p><a style='font-size: 5px;' href='http://thisismyurl.com' title='WordPress Plugin by Christopher Ross'>Our Progress by Christopher Ross</a></p>";
 	echo "</div>\n";
 }
 

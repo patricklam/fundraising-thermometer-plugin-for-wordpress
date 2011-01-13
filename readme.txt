@@ -1,12 +1,12 @@
 
 === Plugin Name ===
 Contributors: christopherross
-Plugin URI: http://regentware.com/26/our-progress-for-wordpress/
-Donate link:  http://regentware.com/donate/
+Plugin URI: http://thisismyurl.com/downloads/wordpress/plugins/fundraising-thermometer-for-wp/
+Donate link:  http://thisismyurl.com/
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
-Tested up to: 3.0.1
-Stable tag: 0.6.9
+Tested up to: 3.0.3
+Stable tag: 0.7.0
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
 
@@ -40,7 +40,7 @@ To display the graphic results, include the following code in your theme:
 2. screenshot-2.jpg
 
 == Updates ==
-Updates to the plugin will be posted here, to [Regent Software](http://christopherross.ca)
+Updates to the plugin will be posted here, to [Christopher Ross](http://thisismyurl.com)
 
 == Frequently Asked Questions ==
 
@@ -87,13 +87,11 @@ The plugin uses standard php money_format(); formating.
 Until I upgrade the version number to 1.x, I still consider this plugin to be under development but it has been tested and works well.
 
 == Donations ==
-If you would like to donate to help support future development of this tool, please visit [Regent Software](http://regentware.com/donate/?7626837)
+If you would like to donate to help support future development of this tool, please visit [Christopher Ross](http://thisismyurl.com/?7626837)
 
 
 == Change Log ==
 
-3.0 (2009-03-16)
-Added the change log
 
 0.5.1 (2009-05-07)
 - Altered the file path
@@ -132,3 +130,7 @@ Added the change log
 0.6.9
 
 * removed update routines
+
+0.7.0
+
+* fixed file lookup
