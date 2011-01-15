@@ -6,7 +6,7 @@ Donate link:  http://thisismyurl.com/
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
 Tested up to: 3.0.3
-Stable tag: 0.7.0
+Stable tag: 0.7.1
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
 
@@ -132,5 +132,9 @@ If you would like to donate to help support future development of this tool, ple
 * removed update routines
 
 0.7.0
+
+* broke file lookup
+
+0.7.1
 
 * fixed file lookup

@@ -5,7 +5,7 @@ Plugin URI: http://thisismyurl.com/downloads/wordpress/plugins/fundraising-therm
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
 Author URI: http://thisismyurl.com
-Version: 0.7.0
+Version: 0.7.1
 */
 
 /*
@@ -13,8 +13,8 @@ Version: 0.7.0
 |                                                                    |
 | License: GPL                                                       |
 |                                                                    |
-| Copyright (C) 2011, Christopher Ross			  	     			 |
-| http://thisismyurl.com                                   			 |
+| Copyright (C) 2011, Christopher Ross				     |
+| http://thisismyurl.com                                   	     |
 | All rights reserved.                                               |
 |                                                                    |
 | This program is free software; you can redistribute it and/or      |
@@ -49,6 +49,27 @@ add_shortcode('show_ourprogress_target','show_ourprogress_target');
 
 
 if ($_REQUEST['ourprogresssubmit'] && isset($_REQUEST['ourprogressmax'])) {
+
+	$uploadpath = wp_upload_dir();
+	$myFile = $uploadpath['basedir']."/ourprogresssettings.txt";
+	$fh = fopen($myFile, 'w') or die("can't open file");
+
+	$ourprogressprogress = ereg_replace("[^0-9]", "", floor($_REQUEST['ourprogressprogress']));
+	$ourprogressmax = ereg_replace("[^0-9]", "", floor($_REQUEST['ourprogressmax']));
+
+
+	$stringData = $ourprogressprogress."\n";
+	fwrite($fh, $stringData);
+	$stringData = $ourprogressmax."\n";
+	fwrite($fh, $stringData);
+	$stringData = $_REQUEST['ourprogressformat']."\n";
+	fwrite($fh, $stringData);
+	$stringData = $_REQUEST['ourprogresstheme']."\n";
+	fwrite($fh, $stringData);
+	$stringData = $_REQUEST['ourprogresspadding']."\n";
+	fwrite($fh, $stringData);
+
+	fclose($fh);
 
 	update_option("ourprogressprogress", $ourprogressprogress);
 	update_option("ourprogressmax", $ourprogressmax);
