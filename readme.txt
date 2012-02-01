@@ -1,12 +1,12 @@
 
 === Plugin Name ===
 Contributors: christopherross
-Plugin URI: http://thisismyurl.com/downloads/wordpress/plugins/fundraising-thermometer-for-wp/
+Plugin URI: http://thisismyurl.com/downloads/wordpress-plugins/
 Donate link:  http://thisismyurl.com/
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
-Tested up to: 3.0.3
-Stable tag: 0.7.1
+Tested up to: 3.3
+Stable tag: 1.0.0
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
 
@@ -14,9 +14,7 @@ Our Progress allows WordPress to display a thermometer to measure progress such 
 
 Our Progress is designed to be a simple method for fund raising activities to be tracked and reported on the live website.
 
-FIXES 
-- no longer resets to $0 on install
-- new feature to allow more direct control of padding
+[WordPress Plugins by Christopher Ross] (http://thisismyurl.com/downloads/wordpress-plugins/)
 
 
 == Installation ==
@@ -87,10 +85,17 @@ The plugin uses standard php money_format(); formating.
 Until I upgrade the version number to 1.x, I still consider this plugin to be under development but it has been tested and works well.
 
 == Donations ==
-If you would like to donate to help support future development of this tool, please visit [Christopher Ross](http://thisismyurl.com/?7626837)
+If you would like to donate to help support future development of this tool, please visit [Christopher Ross](http://thisismyurl.com/)
 
 
 == Change Log ==
+
+= 1.0.0 =
+
+* updated functions to avoid naming conflicts
+* implemented code from Pete Haddow for 1% increments
+* removed need for external CSS (thanks Pete!)
+* general code cleanup
 
 
 0.5.1 (2009-05-07)
