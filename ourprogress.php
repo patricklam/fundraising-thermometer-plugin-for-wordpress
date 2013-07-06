@@ -1,40 +1,27 @@
 <?php
 /*
 Plugin Name: Our Progress
-Plugin URI: http://thisismyurl.com/downloads/wordpress-plugins/
+Plugin URI: http://thisismyurl.com/plugins/our-progress/
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
-Author URI: http://thisismyurl.com
+Author URI: http://thisismyurl.com/
 Version: 1.0.0
 */
 
-/*
-/--------------------------------------------------------------------\
-|                                                                    |
-| License: GPL                                                       |
-|                                                                    |
-| Copyright ( C ) 2012, Christopher Ross				     		 |
-| http://thisismyurl.com                                   	     	 |
-| All rights reserved.                                               |
-|                                                                    |
-| This program is free software; you can redistribute it and/or      |
-| modify it under the terms of the GNU General Public License        |
-| as published by the Free Software Foundation; either version 2     |
-| of the License, or ( at your option ) any later version.           |
-|                                                                    |
-| This program is distributed in the hope that it will be useful,    |
-| but WITHOUT ANY WARRANTY; without even the implied warranty of     |
-| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      |
-| GNU General Public License for more details.                       |
-|                                                                    |
-| You should have received a copy of the GNU General Public License  |
-| along with this program; if not, write to the                      |
-| Free Software Foundation, Inc.                                     |
-| 51 Franklin Street, Fifth Floor                                    |
-| Boston, MA  02110-1301, USA                                        |   
-|                                                                    |
-\--------------------------------------------------------------------/
-*/
+/**
+ * Our Progress core file
+ *
+ * This file contains all the logic required for the plugin
+ *
+ * @link		http://wordpress.org/extend/plugins/our-progress/
+ *
+ * @package 		Our Progress
+ * @copyright		Copyright (c) 2008, Chrsitopher Ross
+ * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
+ *
+ * @since 		Our Progress 1.0
+ */
+
 
 add_action( 'admin_menu', 'thisismyurl_ourprogress_add_pages' );
 add_action( 'wp_head','thisismyurl_add_header_code' );

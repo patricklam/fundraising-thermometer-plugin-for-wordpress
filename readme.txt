@@ -1,11 +1,11 @@
 
 === Plugin Name ===
 Contributors: christopherross
-Plugin URI: http://thisismyurl.com/downloads/wordpress-plugins/
+Plugin URI: http://thisismyurl.com/plugins/our-progress/
 Donate link:  http://thisismyurl.com/
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
-Tested up to: 3.3
+Tested up to: 3.5.1
 Stable tag: 1.0.0
 
 Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
@@ -14,7 +14,9 @@ Our Progress allows WordPress to display a thermometer to measure progress such 
 
 Our Progress is designed to be a simple method for fund raising activities to be tracked and reported on the live website.
 
-[WordPress Plugins by Christopher Ross] (http://thisismyurl.com/downloads/wordpress-plugins/)
+[WordPress Plugins by Christopher Ross] (http://thisismyurl.com/plugins/)
+
+This plugin is maintained by Christopher Ross, http://thisismyurl.com or you can find him on Twitter at http://twitter.com/thisismyurl/
 
 
 == Installation ==
