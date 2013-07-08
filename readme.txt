@@ -8,11 +8,11 @@ Requires at least: 2.0.0
 Tested up to: 3.5.1
 Stable tag: 1.0.0
 
-Our Progress allows WordPress to display a thermometer to measure progress such as fundraising.
+Fundraising Thermometer Plugin for WordPress allows WordPress to display a thermometer to measure progress such as fundraising.
 
 == Description ==
 
-Our Progress is designed to be a simple method for fund raising activities to be tracked and reported on the live website.
+Fundraising Thermometer Plugin for WordPress is designed to be a simple method for fund raising activities to be tracked and reported on the live website.
 
 [WordPress Plugins by Christopher Ross] (http://thisismyurl.com/plugins/)
 
@@ -21,7 +21,7 @@ This plugin is maintained by Christopher Ross, http://thisismyurl.com or you can
 
 == Installation ==
 
-To install Our Progress, please upload the ourprogress folder to your plugins folder and active the plugin.
+To install Fundraising Thermometer Plugin for WordPress, please upload the ourprogress folder to your plugins folder and active the plugin.
 
 == Displaying the results ==
 
@@ -56,7 +56,7 @@ To display the graphic results, include the following code in your theme:
 
 = Can I include it in a Widget? =
 
-As of 0.6.8, you will see a new widget (Appearance > Widgets) for the Our Progress graphic.
+As of 0.6.8, you will see a new widget (Appearance > Widgets) for the Fundraising Thermometer Plugin for WordPress graphic.
 
 = Why can't I see any graphics? =
 
@@ -132,7 +132,7 @@ If you would like to donate to help support future development of this tool, ple
 
 0.6.8
 
-- added Our Progress Widget
+- added Fundraising Thermometer Plugin for WordPress Widget
 
 0.6.9
 

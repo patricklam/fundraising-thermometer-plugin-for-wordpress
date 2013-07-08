@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Our Progress
+Plugin Name: Fundraising Thermometer Plugin for WordPress
 Plugin URI: http://thisismyurl.com/plugins/our-progress/
 Description: Allows WordPress to display a thermometer to measure progress such as fundraising.
 Author: Christopher Ross
@@ -9,17 +9,17 @@ Version: 1.0.0
 */
 
 /**
- * Our Progress core file
+ * Fundraising Thermometer Plugin for WordPress core file
  *
  * This file contains all the logic required for the plugin
  *
  * @link		http://wordpress.org/extend/plugins/our-progress/
  *
- * @package 		Our Progress
+ * @package 		Fundraising Thermometer Plugin for WordPress
  * @copyright		Copyright (c) 2008, Chrsitopher Ross
  * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
  *
- * @since 		Our Progress 1.0
+ * @since 		Fundraising Thermometer Plugin for WordPress 1.0
  */
 
 
@@ -67,19 +67,19 @@ if ( $_REQUEST['ourprogresssubmit'] && isset( $_REQUEST['ourprogressmax'] ) ) {
 function thisismyurl_ourprogress_action( $links, $file ) {
 	// adds the link to the settings page in the plugin list page
 	if ( $file == plugin_basename( dirname( __FILE__ ).'/ourprogress.php' ) )
-	$links[] = "<a href='edit.php?page=ourprogressmanage'>" . __( 'Settings', 'Our Progress' ) . "</a>";
+	$links[] = "<a href='edit.php?page=ourprogressmanage'>" . __( 'Settings', 'Fundraising Thermometer Plugin for WordPress' ) . "</a>";
 	return $links;
 }
 
 
 
 function thisismyurl_ourprogress_add_pages( ) {
-    add_management_page( 'Our Progress', 'Our Progess', 8, 'ourprogressmanage', 'thisismyurl_ourprogress_manage_page' );
+    add_management_page( 'Fundraising Thermometer Plugin for WordPress', 'Our Progess', 8, 'ourprogressmanage', 'thisismyurl_ourprogress_manage_page' );
 }
 
 function thisismyurl_ourprogress_manage_page( ) {
     echo '<div class="wrap">';
-	echo '<h2>Our Progress</h2>';
+	echo '<h2>Fundraising Thermometer Plugin for WordPress</h2>';
 	echo '<form method="post">';
 	
 	?>
@@ -135,7 +135,7 @@ function thisismyurl_ourprogress_manage_page( ) {
 			<td><input name="ourprogresspadding" id="ourprogresspadding" type="text" value="<?php 
 				if( get_option( "ourprogresspadding" ) ) {echo get_option( "ourprogresspadding" );} else {echo "20";}
 			?>" size="40" aria-required="true" />
-            <p>How many pixels would you like Our Progress to place between values on the bar?</p></td>
+            <p>How many pixels would you like Fundraising Thermometer Plugin for WordPress to place between values on the bar?</p></td>
 		</tr>
         
         
@@ -204,9 +204,9 @@ function show_ourprogress_graphic( ) {
         echo "px;'>".thisismyurl_my_money_format( $format,$counter )."</div>\n";
 	}
 	echo "</div>\n";
-	echo "<!-- Our Progress plug-in by Christopher Ross, http://thisismyurl.com -->\n";
+	echo "<!-- Fundraising Thermometer Plugin for WordPress plug-in by Christopher Ross, http://thisismyurl.com -->\n";
 	echo "</div>\n";
-	echo "<p><a style='font-size: 5px;' href='http://thisismyurl.com' title='WordPress Plugin by Christopher Ross'>Our Progress by Christopher Ross</a></p>";
+	echo "<p><a style='font-size: 5px;' href='http://thisismyurl.com' title='WordPress Plugin by Christopher Ross'>Fundraising Thermometer Plugin for WordPress by Christopher Ross</a></p>";
 	echo "</div>\n";
 }
 
@@ -239,13 +239,13 @@ function thisismyurl_my_money_format( $format, $num ) {
 
 function widget_thisismyurl_our_progress( ) {
 ?>
-  <h2 class="widgettitle">Our Progress</h2>
+  <h2 class="widgettitle">Fundraising Thermometer Plugin for WordPress</h2>
   <?php show_ourprogress_graphic( ); ?>
 <?php
 }
 function thisismyurl_our_progress_init( )
 {
-  register_sidebar_widget( __( 'Our Progress' ), 'widget_thisismyurl_our_progress' );
+  register_sidebar_widget( __( 'Fundraising Thermometer Plugin for WordPress' ), 'widget_thisismyurl_our_progress' );
 }
 add_action( "plugins_loaded", "thisismyurl_our_progress_init" );
 
