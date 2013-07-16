@@ -81,20 +81,20 @@ function thisismyurl_ourprogress_manage_page( ) {
     echo '<div class="wrap">';
 	echo '<h2>Fundraising Thermometer Plugin for WordPress</h2>';
 	echo '<form method="post">';
-	
+
 	?>
 	<table class="form-table">
 		<tr class="form-field form-required">
 			<th scope="row" valign="top"><label for="name">Current Amount</label></th>
-			<td><input name="ourprogressprogress" id="ourprogressprogress" type="text" value="<?php 
+			<td><input name="ourprogressprogress" id="ourprogressprogress" type="text" value="<?php
 				if( get_option( "ourprogressprogress" ) ) {echo get_option( "ourprogressprogress" );} else {echo "0";}
-			
+
 			?>" size="40" aria-required="true" />
             <p>How much money have you raised to date?</p></td>
 		</tr>
 		<tr class="form-field form-required">
 			<th scope="row" valign="top"><label for="name">Target Amount</label></th>
-			<td><input name="ourprogressmax" id="ourprogressmax" type="text" value="<?php 
+			<td><input name="ourprogressmax" id="ourprogressmax" type="text" value="<?php
 				if( get_option( "ourprogressmax" ) ) {echo get_option( "ourprogressmax" );} else {echo "100";}
 			?>" size="40" aria-required="true" />
             <p>Input the total amount of money you would like to raise.</p></td>
@@ -102,7 +102,7 @@ function thisismyurl_ourprogress_manage_page( ) {
         <?php if ( function_exists( 'money_format' ) ) {?>
 		<tr class="form-field form-required">
 			<th scope="row" valign="top"><label for="name">Currency Format</label></th>
-			<td><input name="ourprogressformat" id="ourprogressmax" type="text" value="<?php 
+			<td><input name="ourprogressformat" id="ourprogressmax" type="text" value="<?php
 				if( get_option( "ourprogressformat" ) ) {echo get_option( "ourprogressformat" );} else {echo "$%( #10n";}
 			?>" size="40" aria-required="true" />
             <p>Number formating is based on the standard <a href='http://ca.php.net/manual/en/function.money-format.php'>PHP money format</a>.</p></td>
@@ -111,7 +111,7 @@ function thisismyurl_ourprogress_manage_page( ) {
 		<tr class="form-field">
 			<th scope="row" valign="top"><label for="slug">Theme</label></th>
 			<td><select name="ourprogresstheme" id="ourprogresstheme">
-            	<?php 
+            	<?php
 					$path = "../wp-content/plugins/fundraising-thermometer-plugin-for-wordpress/images/";
 					$myDirectory = opendir( $path );
 
@@ -124,33 +124,33 @@ function thisismyurl_ourprogress_manage_page( ) {
 				}
 			}
 
-					
+
 				?>
                 </select>
             <p>Which theme would you like to use?</p></td>
 		</tr>
-        
+
         <tr class="form-field form-required">
 			<th scope="row" valign="top"><label for="name">Padding Amount</label></th>
-			<td><input name="ourprogresspadding" id="ourprogresspadding" type="text" value="<?php 
+			<td><input name="ourprogresspadding" id="ourprogresspadding" type="text" value="<?php
 				if( get_option( "ourprogresspadding" ) ) {echo get_option( "ourprogresspadding" );} else {echo "20";}
 			?>" size="40" aria-required="true" />
             <p>How many pixels would you like Fundraising Thermometer Plugin for WordPress to place between values on the bar?</p></td>
 		</tr>
-        
-        
-	</table>	
+
+
+	</table>
 	<p class="submit"><input type="submit" class="button" name="ourprogresssubmit" value="Update" /></p>
 	<?php
 	echo '<input id="old" type="hidden" value="'.get_option( "progress" ).'">';
 	echo '</form>';
-	
+
 	echo "	<small><p><strong>Installation</strong></p>
 			<p>You can display the current value of your fund raising efforts by placing the code <em>&lt;?php echo show_ourprogress( );?&gt;</em> anywhere in your theme. You can display a graphic of your fund raising efforts by placing the code <em>&lt;?php echo show_ourprogress_graphic( );?&gt;</em> anywhere in your theme.</p>
-	
+
 			<p><strong>Want to say thank you?</strong></p>
 		  	<p>Using this plug-in is free, but if you'd like to say thanks you can <a href='http://thisismyurl.com/?2098421'>send me a small donation</a>.<br/>Even better, a simple link from your web site to mine ( <em><a href='http://thisismyurl.com'>http://thisismyurl.com</a></em> ).</p>";
-	
+
 	echo '</small></div>';
 }
 
@@ -183,13 +183,13 @@ function show_ourprogress_graphic( ) {
     } else {
      	echo "<div class='ourprogress'>\n";
     }
-	
+
 	echo "<div class='ourprogressgraphics'>\n";
 	$percent = round( ( $current/$max )*100 );
-	
+
 	if( $percent >= 100 )  {$percent = 100;}
 	$percent = str_pad( thisismyurl_roundnum( $percent, 1 ), 2, "0", STR_PAD_LEFT );
-	$height = $percent * 4; 
+	$height = $percent * 4;
 	$margin_top = 400 - $height;
 	if( $margin_top > 398 ) $margin_top = 398;
 
@@ -228,13 +228,13 @@ function thisismyurl_roundnum ( $num, $nearest )
 }
 
 
-function thisismyurl_my_money_format( $format, $num ) {
+function thisismyurl_my_money_format( $format = '%i', $num = 0 ) {
 		if ( function_exists( 'money_format' ) ) {
 			 return ( money_format( $format,$num ) );
 		} else {
 			return "$" . number_format( $num, 2 );
 		}
-     
+
     }
 
 function widget_thisismyurl_our_progress( ) {
