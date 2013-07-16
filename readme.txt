@@ -6,7 +6,7 @@ Donate link:  http://thisismyurl.com/
 Tags: progress, counter, thermometer, fund, raising, fundraising
 Requires at least: 2.0.0
 Tested up to: 3.5.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 Fundraising Thermometer Plugin for WordPress allows WordPress to display a thermometer to measure progress such as fundraising.
 
