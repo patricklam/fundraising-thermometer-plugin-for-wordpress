@@ -103,7 +103,7 @@ function thisismyurl_ourprogress_manage_page( ) {
 		<tr class="form-field form-required">
 			<th scope="row" valign="top"><label for="name">Currency Format</label></th>
 			<td><input name="ourprogressformat" id="ourprogressmax" type="text" value="<?php
-				if( get_option( "ourprogressformat" ) ) {echo get_option( "ourprogressformat" );} else {echo "$%( #10n";}
+				if( get_option( "ourprogressformat" ) ) {echo get_option( "ourprogressformat" );} else {echo "%( #10n";}
 			?>" size="40" aria-required="true" />
             <p>Number formating is based on the standard <a href='http://ca.php.net/manual/en/function.money-format.php'>PHP money format</a>.</p></td>
 		</tr>
@@ -174,7 +174,7 @@ function show_ourprogress_graphic( ) {
 	echo "<div class='ourprogresswrapper'>\n";
 	if( strlen( get_option( "ourprogressmax" ) )>1 ) {$max = get_option( "ourprogressmax" );} else {$max = "100";}
 	if( strlen( get_option( "ourprogressprogress" ) )>1 ) {$current = get_option( "ourprogressprogress" );} else {$current = 0;}
-	if( strlen( get_option( "ourprogressformat" ) )>1 ) {$format = get_option( "ourprogressformat" );} else {$format = "$%( #10n";}
+	if( strlen( get_option( "ourprogressformat" ) )>1 ) {$format = get_option( "ourprogressformat" );} else {$format = "%( #10n";}
 	if( strlen( get_option( "ourprogresstheme" ) )>1 ) {$theme = get_option( "ourprogresstheme" );} else {$theme = "default";}
 	if( strlen( get_option( "ourprogresspadding" ) )>1 ) {$padding = get_option( "ourprogresspadding" );} else {$padding = "20";}
 
