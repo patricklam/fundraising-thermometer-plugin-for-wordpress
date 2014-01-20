@@ -66,7 +66,7 @@ if ( $_REQUEST['ourprogresssubmit'] && isset( $_REQUEST['ourprogressmax'] ) ) {
 
 function thisismyurl_ourprogress_action( $links, $file ) {
 	// adds the link to the settings page in the plugin list page
-	if ( $file == plugin_basename( dirname( __FILE__ ).'/ourprogress.php' ) )
+	if ( $file == plugin_basename( dirname( __FILE__ ).'/fundraising-thermometer-plugin-for-wordpress.php' ) )
 	$links[] = "<a href='edit.php?page=ourprogressmanage'>" . __( 'Settings', 'Fundraising Thermometer Plugin for WordPress' ) . "</a>";
 	return $links;
 }
@@ -74,7 +74,7 @@ function thisismyurl_ourprogress_action( $links, $file ) {
 
 
 function thisismyurl_ourprogress_add_pages( ) {
-    add_management_page( 'Fundraising Thermometer Plugin for WordPress', 'Our Progess', 8, 'ourprogressmanage', 'thisismyurl_ourprogress_manage_page' );
+    add_options_page( 'Fundraising Thermometer Plugin for WordPress', 'Fundraising Thermometer Plugin', 8, 'ourprogressmanage', 'thisismyurl_ourprogress_manage_page' );
 }
 
 function thisismyurl_ourprogress_manage_page( ) {
@@ -119,7 +119,7 @@ function thisismyurl_ourprogress_manage_page( ) {
 			while( $entryName = readdir( $myDirectory ) ) {
 				if ( substr_count( $entryName,"." ) == 0 ) {
 					echo "<option value='$entryName'";
-					if ( get_option( "ourprogressformat" ) == $entryName ) { echo " selected ";}
+					if ( get_option( "ourprogresstheme" ) == $entryName ) { echo " selected ";}
 					echo ">$entryName</option>\n";
 				}
 			}
@@ -227,10 +227,9 @@ function thisismyurl_roundnum ( $num, $nearest )
     return $ret;
 }
 
-
 function thisismyurl_my_money_format( $format = '%i', $num = 0 ) {
 		if ( function_exists( 'money_format' ) ) {
-			 return ( money_format( $format,$num ) );
+			 return "$" . ( money_format( $format,$num ) );
 		} else {
 			return "$" . number_format( $num, 2 );
 		}
