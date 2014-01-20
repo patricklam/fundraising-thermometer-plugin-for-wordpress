@@ -12,7 +12,7 @@
 }
 .ourprogressgraphics {
 	width: 13px;
-	padding: 48px 0px 0px 42px;
+	padding: 48px 0px 0px 42px !important;
 	float: left;
 }
 .ourprogressmercury {
@@ -27,7 +27,7 @@
 }
 .ourprogressnumbers {
 	float: right;
-	margin: 25px 10px 0px 0px;
+	margin: 40px 10px 0px 0px;
 	font-size: 10px;
 	color: #000000;
 	text-align: right;
